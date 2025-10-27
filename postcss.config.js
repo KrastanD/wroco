@@ -8,10 +8,7 @@
 module.exports = {
   plugins: [
     require("react-strict-dom/postcss-plugin")({
-      include: [
-        "app/**/*.{js,jsx,mjs,ts,tsx}",
-        "../../node_modules/example-ui/**/*.js",
-      ],
+      include: ["src/**/*.{js,jsx,mjs,ts,tsx}"],
     }),
     require("autoprefixer"),
   ],
