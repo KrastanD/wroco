@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GAME_CONFIG } from "./utils/config";
-import { getRandomColor } from "./utils/helpers";
+import { getRandomColor, shuffleArray } from "./utils/helpers";
 
 export function useColorGame() {
   const [selectedColor, setSelectedColor] = useState<string>("");
@@ -9,6 +9,9 @@ export function useColorGame() {
   >("waiting");
   const [timeLeft, setTimeLeft] = useState<number>(GAME_CONFIG.timeToReact);
   const [score, setScore] = useState<number>(0);
+  const [shuffledColors, setShuffledColors] = useState<string[]>(
+    shuffleArray(GAME_CONFIG.colors)
+  );
 
   useEffect(() => {
     if (gameState === "inProgress" && timeLeft > 0) {
@@ -31,6 +34,7 @@ export function useColorGame() {
     setSelectedColor(newColor);
     setTimeLeft(GAME_CONFIG.timeToReact);
     setGameState("inProgress");
+    setShuffledColors(shuffleArray(GAME_CONFIG.colors));
   };
 
   const handleColorClick = (color: string) => {
@@ -53,6 +57,7 @@ export function useColorGame() {
     gameState,
     timeLeft,
     score,
+    shuffledColors,
     handleColorClick,
     handleStartGame,
   };

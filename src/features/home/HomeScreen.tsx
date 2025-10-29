@@ -2,7 +2,6 @@ import { css, html } from "react-strict-dom";
 import Box from "./Box";
 import GameHeader from "./GameHeader";
 import { useColorGame } from "./useColorGame";
-import { GAME_CONFIG } from "./utils/config";
 
 function HomeScreen() {
   const {
@@ -10,6 +9,7 @@ function HomeScreen() {
     gameState,
     timeLeft,
     score,
+    shuffledColors,
     handleColorClick,
     handleStartGame,
   } = useColorGame();
@@ -25,7 +25,7 @@ function HomeScreen() {
       />
 
       <html.div style={styles.colorContainer}>
-        {GAME_CONFIG.colors.map((color) => (
+        {shuffledColors.map((color) => (
           <Box key={color} color={color} onClick={handleColorClick} />
         ))}
       </html.div>
